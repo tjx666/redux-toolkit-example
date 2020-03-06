@@ -1,31 +1,32 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { addTodo } from "../../reducers/todosSlice";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+
+import { addTodo } from 'reducers/todosSlice';
 
 const mapDispatch = { addTodo };
 
 const TodoInputBox = ({ addTodo }) => {
-  const [todoText, setTodoText] = useState("");
+    const [todoText, setTodoText] = useState('');
 
-  const onChange = e => setTodoText(e.target.value);
+    const onChange = e => setTodoText(e.target.value);
 
-  return (
-    <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          if (!todoText.trim()) {
-            return;
-          }
-          addTodo(todoText);
-          setTodoText("");
-        }}
-      >
-        <input value={todoText} onChange={onChange} />
-        <button type="submit">Add Todo</button>
-      </form>
-    </div>
-  );
+    return (
+        <div>
+            <form
+                onSubmit={e => {
+                    e.preventDefault();
+                    if (!todoText.trim()) {
+                        return;
+                    }
+                    addTodo(todoText);
+                    setTodoText('');
+                }}
+            >
+                <input value={todoText} onChange={onChange} />
+                <button type="submit">Add Todo</button>
+            </form>
+        </div>
+    );
 };
 
 export default connect(null, mapDispatch)(TodoInputBox);
